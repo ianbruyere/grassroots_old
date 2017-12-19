@@ -1,0 +1,10 @@
+/grassrootsproto
+grassroots/db.sqlite3
+/core
+/.vscode
+*.sqlite
+*migrations
+*__pycache__
+*.pyc
+*.pyo
+*~
