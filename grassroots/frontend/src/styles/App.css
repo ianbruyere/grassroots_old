@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    height: 100vh;
+
+} 
+
+.wrapper > * {
+    flex: 1 100%;
+}
+
+.main {
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    background: deepskyblue;
+  }
+
+.aside2 {
+    overflow: auto;
+  }
+
+  @media all and (min-width: 600px) {
+    .aside { flex: 1 auto; }
+  }
+   
+  @media all and (min-width: 800px) {
+    .main    { flex: 25 0px; } /* adjusting the six up or down changes aside2's amount of space */
+    .main    { order: 2; }
+    .aside2  { order: 3; }
+    .footer  { order: 4; }
+  } 

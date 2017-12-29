@@ -1,35 +1,32 @@
 import React from 'react'
-import SenateMember from './SenateMember'
 
 class State extends React.Component {
     constructor() {
         super()
-        this.onHover = this.onHover.bind(this);
+        this.handleClick = this.handleClick.bind(this)
+        this.state = {
+            stateClicked : '',
+            senateMembers : []
+        }
+        // this.onHover = this.onHover.bind(this);
     }
-    onHover(e) {
-        console.log(this);
+    handleClick(e) {
+
+        this.setState({ stateClicked : e.target.id });
+        this.props.callBackParent(e.target.id); // notify of change
     }
     render() {
-        const { state, id, senateMembers } = this.props
-        // console.log(filteredSenateMembers)
+        const { stateOutline, id } = this.props
         return (
-            <path onMouseOver={(e) => this.onHover(e)}
-            d={state} 
-            id={id}
-            data-info={
-            <div>
-                <h3>Senate Members</h3> 
-                {
-                  Object
-                  .keys(senateMembers)
-                  .map(key => 
-                    <SenateMember 
-                      key={key}
-                      member={senateMembers[key]}
-                    />) 
-                }   
-            </div>}
-            fill="#D3D3D3"/>
+            <g>
+              <path 
+              // onMouseOver={e => this.onHover(e, senateMembers)}
+              onClick={e => this.handleClick(e)}
+              d={stateOutline} 
+              id={id}
+              fill="#808080"/>
+            </g>
+            
         )
     }
 }

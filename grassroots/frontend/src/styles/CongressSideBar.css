@@ -1,0 +1,8 @@
+.listOfMembers {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid black;
+  }

@@ -1,0 +1,26 @@
+.usmapWrapper {
+    display: flex;
+    justify-content: center;
+    background-color: deepskyblue;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 2 auto;
+}
+
+.usmapWrapper > * {
+    display: flex;
+    justify-content: center;
+}
+
+.usmap {
+    width: 100vh;
+    flex: 2 auto; /* same here */
+}
+
+.usmap path:hover, circle:hover {
+    stroke: #002868 !important;
+    stroke-width:2px;
+    stroke-linejoin: round;
+    fill: #002868 !important;
+    cursor: pointer;
+  }

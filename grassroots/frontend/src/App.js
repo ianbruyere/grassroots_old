@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SenateMember from './SenateMember'
-import './App.css';
-import USMAP from './USMAP'
+import CongressSideBar from './CongressSideBar';
+import styles from './styles/App.css';
+import USMAP from './USMAP';
+import Header from './Header';
+import Footer from './Footer';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      senateMembers: []
+      senateMembers: [],
+      houseMembers:[],
+      currentState: []
     }
   }
   
@@ -24,18 +28,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <h1>Senate Members</h1>
-        <ul className="list-of-members">
-          {
-            Object
-            .keys(this.state.senateMembers)
-            .map(key => <SenateMember 
-                 key={key} 
-                 member={this.state.senateMembers[key]} 
-              />)
-          }
-        </ul>  */}
-        <USMAP senateMembers={this.state.senateMembers}/>  
+        <Header />
+        <div className="wrapper">
+          <article className="main">
+            <USMAP senateMembers={this.state.senateMembers}/>
+          </article>
+          <aside className="aside aside2">   
+            <CongressSideBar senateMembers={this.state.senateMembers}/>
+          </aside>  
+        </div>
+        <Footer />
       </div>
     );
   }
