@@ -15,6 +15,7 @@ class SenateMember(models.Model):
     
     # Political Office Items
     in_office = models.NullBooleanField()
+    party = models.CharField(max_length=300, null=True)
     
     # Social Media
     twitter_account = models.CharField(max_length=300, null=True, blank=True)

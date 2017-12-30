@@ -1,4 +1,19 @@
 .footer {
-    background: lightgreen;
+    background: black;
+    display: flex;
+    justify-content: space-around;
   }
-  
+
+  .footer > * {
+    display:flex;
+  }
+ul {
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+li {
+  color: white;
+}

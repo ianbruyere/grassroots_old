@@ -11,7 +11,7 @@ class SenateMemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = SenateMember
         fields=('id', 'first_name', 'last_name', 'state',
-                'date_of_birth', 'in_office', 'twitter_account', 
+                'date_of_birth', 'in_office', 'party', 'twitter_account', 
                 'facebook_account', 'youtube_account', 'govtrack_id',
                 'cspan_id', 'votesmart_id', 'icpsr_id', 'crp_id',
                 'google_entity_id', 'api_uri', 'url', 'rss_url', 'contact_form'
