@@ -1,6 +1,6 @@
 import React from 'react'
 import State from './State'
-import styles from './styles/USMAP.css';
+import styles from '../styles/USMAP.css';
 
 
 const usmap = {

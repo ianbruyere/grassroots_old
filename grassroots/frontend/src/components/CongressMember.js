@@ -1,8 +1,9 @@
 import React from 'react'
-import styles from './styles/CongressMembers.css'
-import Twitter  from './Twitter'
-import Facebook from './Facebook'
-import Youtube from './Youtube' // Really dont know what value Youtube provides
+import PropTypes from 'prop-types'
+import styles from '../styles/CongressMembers.css'
+import Twitter  from '../icons/Twitter'
+import Facebook from '../icons/Facebook'
+import Youtube from '../icons/Youtube' // Really dont know what value Youtube provides
 import Profile from './Profile'
 
 
@@ -40,6 +41,6 @@ class CongressMember extends React.Component {
 }
 
 CongressMember.propTypes = {
-    //member: React.PropTypes.object.isRequired
+    member: PropTypes.object.isRequired
 }
 export default CongressMember;

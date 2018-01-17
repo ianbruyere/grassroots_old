@@ -1,0 +1,25 @@
+#wrapper {
+    display: flex;
+    justify-content: center
+}
+
+#navbar {
+  height: 40px;
+  width: 100%;
+  border: 3px solid
+}
+
+#map {
+    display: flex;
+}
+
+#congressSideBar {
+  display: flex;
+  
+}
+
+#bottombar {
+  height: 40px;
+  width: 100vh;
+  border: 4px solid black;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CongressSideBar from './CongressSideBar';
-import styles from './styles/App.css';
+import styles from '../styles/App.css';
 import USMAP from './USMAP';
 import Header from './Header';
 import Footer from './Footer';
