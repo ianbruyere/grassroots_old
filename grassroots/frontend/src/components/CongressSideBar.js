@@ -25,7 +25,7 @@ class CongressSideBar extends React.Component {
         
         return (
               <ul className="listOfMembers">
-                <h3>Sentators</h3>
+                <h3>Senators</h3>
               {
                   Object
                   .keys(visibleCongressMembers)
