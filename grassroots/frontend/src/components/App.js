@@ -1,29 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import CongressSideBar from './CongressSideBar';
-import styles from '../styles/App.css';
+import PropTypes from 'prop-types'
+import VisibleCongressMembers from '../containers/VisibleCongressMembers';
+import  '../styles/App.css';
 import USMAP from './USMAP';
 import Header from './Header';
 import Footer from './Footer';
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      senateMembers: [],
-      houseMembers:[],
-      currentState: []
-    }
-  }
-  
-  componentWillMount() {
-    axios.get("http://127.0.0.1:8000/api/senatemembers/")
-    .then(res => {
-      this.setState({
-        senateMembers: res.data
-      })
-    })
-  }
 
   render() {
     return (
@@ -31,10 +14,10 @@ class App extends Component {
         <Header />
         <div className="wrapper">
           <article className="main">
-            <USMAP senateMembers={this.state.senateMembers}/>
+            <USMAP />
           </article>
           <aside className="aside aside2">   
-            <CongressSideBar senateMembers={this.state.senateMembers}/>
+            <VisibleCongressMembers />
           </aside>  
         </div>
         <Footer />
@@ -47,4 +30,7 @@ App.propTypes = {
   
 }
 
+App.contextTypes = {
+  store: PropTypes.object
+}
 export default App;

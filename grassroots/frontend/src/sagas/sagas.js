@@ -1,19 +1,16 @@
-import { call, put, takeLatest, takeEvery, all } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { fetchSenatorData } from '../services/api'
+import {recieveCongressMembers} from '../actions/index'
 
-
-function *getSenators(action) {
-    const senateData = yield call(fetchSenatorData);
-    console.log(senateData)
+function *fetchCongress(action) {
+    try {
+        const congressMembers = yield call(fetchSenatorData)
+        yield put(recieveCongressMembers(action.state, congressMembers));
+    } catch(e) {
+        yield put({type:"REQUEST_CONGRESS_MEMBERS_FAILED", message: e.message})
+    }
 }
 
-
-// function *watchEveryFilterCongress() {
-//     yield takeEvery('FILTER_BY_STATE', getSenators)
-// }
-
-export default function *rootSaga() {
-    yield all([
-        yield takeEvery('FILTER_BY_STATE', getSenators)
-    ])
+export default function *mySaga() {
+    yield takeEvery("REQUEST_CONGRESS_MEMBERS", fetchCongress)
 }

@@ -1,9 +1,25 @@
-const FILTER_BY_STATE = "FILTER_BY_STATE"
+export const REQUEST_CONGRESS_MEMBERS = 'REQUEST_CONGRESS_MEMBERS'
+export const RECIEVE_CONGRESS_MEMBERS = 'RECIEVE_CONGRESS_MEMBERS'
+export const SELECT_STATE = 'SELECT_STATE'
 
-export function filterCongressBar(state) {
-    console.log(state);
+export function selectState(state) {
     return {
-        type: FILTER_BY_STATE,
-        state,
+        type: SELECT_STATE,
+        state
     }
 }
+export function requestCongressMembers(state) {
+    return {
+        type: REQUEST_CONGRESS_MEMBERS,
+        state
+    }
+}
+
+export function recieveCongressMembers(state, json) {
+    return {
+        type: RECIEVE_CONGRESS_MEMBERS,
+        state,
+        congressMembers: json.filter((t) => t.state == state)
+    }
+}
+

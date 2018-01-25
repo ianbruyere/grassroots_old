@@ -1,6 +1,6 @@
 import React from 'react'
 import State from './State'
-import styles from '../styles/USMAP.css';
+import '../styles/USMAP.css';
 
 
 const usmap = {
@@ -58,19 +58,8 @@ const usmap = {
 }
 
 class USMAP extends React.Component {
-    constructor() {
-        super();
-        this.state = { 
-            clickedState : '',
-            senateMembers: []
-        }
-    }
-    onChildChanged(newState) {
-        this.setState({clickedState : newState})
-    }
 
     render() {
-        const { senateMembers } = this.props
         return (
             <div>
               <svg className="usmap" width="959" height="593">
@@ -82,10 +71,6 @@ class USMAP extends React.Component {
                     key={key}
                     id={key}
                     stateOutline={usmap[key]}
-                    callBackParent={(newState) => this.onChildChanged(newState)}
-                    senateMembers = {senateMembers.filter(obj => {
-                        return obj.state === key
-                      })}
                     />)
                 }
              </svg>

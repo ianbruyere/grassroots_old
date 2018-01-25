@@ -1,16 +1,17 @@
 import React from 'react';
-import styles from '../styles/Header.css';
+import { Link } from 'react-router-dom'
+import '../styles/Header.css';
 
 class Header extends React.Component {
     render() {
         return (
         <ul className="navigation">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Forum</a></li>
-          <li><a href="#">Contact</a></li>
-          <li className="right"><a href="#">Login</a></li>
-          <li className="right"><a href="#">Sign Up</a></li>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/'>About</Link></li>
+          <li><Link to='/'>Forum</Link></li>
+          <li><Link to='/'>Contact</Link></li>
+          <li className="right"><Link to='/'>Login</Link></li>
+          <li className="right"><Link to='/'>Sign Up</Link></li>
         </ul>
     )
     }
