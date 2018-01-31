@@ -19,7 +19,7 @@ export function recieveCongressMembers(state, json) {
     return {
         type: RECIEVE_CONGRESS_MEMBERS,
         state,
-        congressMembers: json.filter((t) => t.state == state)
+        congressMembers: json.filter((t) => t.state === state)
     }
 }
 

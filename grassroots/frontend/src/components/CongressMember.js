@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from '../styles/CongressMembers.css'
+import '../styles/CongressMembers.css'
 import Twitter  from '../icons/Twitter'
 import Facebook from '../icons/Facebook'
 import Youtube from '../icons/Youtube' // Really dont know what value Youtube provides

@@ -1,19 +1,25 @@
+from django.conf import settings
 import os
 import requests
 import json
 
-#TODO: Need to migrate this 
-PPC_API_KEY = 'xOE6X5gmCOiNu0BH7ksJJHnZVhmnmPQmri9QN2He' #os.environ.get('PPC_API_KEY', None)
-	
+class HelperMixIn(object):
+    """this contains all the stuff universal to the ProPublica Data Store"""
+    def __init__(self):
+	    pass
 
-def get_senate_members():
-	return requests.get(_url('{}/{}/{}/members.json'.format(_version(),
-	       '115','senate')), headers=_authentication()).json()
-	pass
+    def _authentication():
+        return {'X-API-Key' : settings.PPC_API_KEY}
+
+    def _version():
+	    return 'v1'
+
+    def _url(path):
+	    return 'https://api.propublica.org/congress/' + path
 
 #TODO:Make other functions to other services
 def get_bills():
-	pass
+	return requests.get(_url())
 
 def get_votes():
 	pass	
@@ -28,11 +34,15 @@ def get_committees():
 	pass
 
 # Helper Functions
-def _authentication():
-	return {'X-API-Key' : PPC_API_KEY}
+class CongressMembers(HelperMixIn):
+	"""This will contain all the possibilties for CongressMembers"""
 
-def _version():
-	return 'v1'
+	def __init__(self):
+		super(CongressMembers, self).__init__()
+		self.congressSession = '115'
 
-def _url(path):
-	return 'https://api.propublica.org/congress/' + path
+	def get_members(memberType):
+		return requests.get('https://api.propublica.org/congress/{}/{}/{}/members.json'
+		.format('v1', '115', memberType), headers={'X-API-Key' : settings.PPC_API_KEY}).json()
+	
+	

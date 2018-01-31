@@ -3,9 +3,10 @@ from django.db import models
 import datetime
 
 # Create your models here.
-class SenateMember(models.Model):
+class CongressMember(models.Model):
     id = models.CharField(primary_key=True, max_length=300)
     created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+    chamber = models.CharField(max_length=300, null=True, default="huh")
 
     # Personal Info
     first_name = models.CharField(max_length=300, null=True)

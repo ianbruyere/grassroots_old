@@ -11,7 +11,6 @@ const CongressSideBar = ({congressMembers}) => (
         //currently my middleware will make the call to the api
 
     <ul className="listOfMembers">
-    {console.log(congressMembers)}
         <h3>Senators</h3>
            {
                Object
@@ -24,12 +23,5 @@ const CongressSideBar = ({congressMembers}) => (
             }            
     </ul>
 )
-
-// CongressSideBar.propTypes = {
-//     congressMembers: PropTypes.arrayOf(
-//         PropTypes
-//     )
-// }
-
 
 export default CongressSideBar;

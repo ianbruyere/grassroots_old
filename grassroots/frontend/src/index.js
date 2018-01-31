@@ -34,7 +34,7 @@ const Root = () => {
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/" component={App} />
+        <Route exact path="/" component={App} />
         <Route path="*" component={NotFound} /> 
       </Switch>
     </BrowserRouter>
