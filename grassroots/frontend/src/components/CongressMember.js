@@ -16,10 +16,7 @@ class CongressMember extends React.Component {
                   <div className="totalListItemWrapper">
                     <div className="profileImageWrapper"><Profile /></div>
                     <div className="profileInfoWrapper">
-                      {/* <h3 className={`profileInfo member-name ${member.party}`}>
-                        {member.first_name} {member.last_name}
-                      </h3> */}
-                      <h3 className="profileInfo member-name">
+                      <h3 className={`profileInfo member-name ${member.party}`}>
                         {member.first_name} {member.last_name}
                       </h3>
                       <div className="profileInfo state">{ member.state }</div>

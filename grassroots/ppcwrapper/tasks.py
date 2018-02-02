@@ -6,7 +6,7 @@ from .models import CongressMember
 from .serializers import CongressMemberSerializer
 
 app.conf.beat_schedule = {
-        'task-number-one': {
+        'get-congress-members': {
         'task': 'ppcwrapper.tasks.get_congress_members',
         'schedule': crontab(minute='*/1')
         }
@@ -14,8 +14,8 @@ app.conf.beat_schedule = {
 
 @task()
 def get_congress_members():
-    senateData = services.CongressMembers.get_members('senate')
-    houseData = services.CongressMembers.get_members('house')
+    senateData = services.CongressMembersClient.get_members('senate')
+    houseData = services.CongressMembersClient.get_members('house')
 
     currentCongressMemberData = CongressMember.objects.all()
     get_or_update(senateData['results'][0]['members'], currentCongressMemberData, CongressMemberSerializer, "senate")

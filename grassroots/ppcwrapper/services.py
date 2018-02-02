@@ -7,42 +7,79 @@ class HelperMixIn(object):
     """this contains all the stuff universal to the ProPublica Data Store"""
     def __init__(self):
 	    pass
-
-    def _authentication():
-        return {'X-API-Key' : settings.PPC_API_KEY}
-
-    def _version():
+	
+    # @property
+    # def authentication():
+    #     return {'X-API-Key' : settings.PPC_API_KEY}
+	
+    @staticmethod
+    def version():
 	    return 'v1'
 
-    def _url(path):
-	    return 'https://api.propublica.org/congress/' + path
+    @staticmethod
+    def requester(path):
+	    return requests.get('https://api.propublica.org/congress/v1/ ' + path, 
+	                        headers={'X-API-Key' : settings.PPC_API_KEY}).json()
 
-#TODO:Make other functions to other services
-def get_bills():
-	return requests.get(_url())
 
-def get_votes():
-	pass	
-
-def get_statements():
-	pass
-
-def get_explanations():
-	pass
-
-def get_committees():
-	pass
-
-# Helper Functions
-class CongressMembers(HelperMixIn):
-	"""This will contain all the possibilties for CongressMembers"""
+class CongressMembersClient(HelperMixIn):
+	"""This will contain all the possibilties for CongressMembersClient"""
 
 	def __init__(self):
-		super(CongressMembers, self).__init__()
+		super()
+		self.congressSession = '115'
+    
+	def get_members(self, memberType):
+		path='{}/{}/members.json'.format(self.congressSession, memberType)
+		return super().requester(path)
+	
+	def get_vote_positions(self, memberId):
+		path='members/{}/votes.json'.format(memberId)
+		return super().requester(path)
+
+	def get_cosponsored_bills(self, memberId, cosponoredOrWithdrawn):
+		path='members/{}/bills/{}.json'.format(memberId, cosponoredOrWithdrawn)
+		return super().requester(path)
+	
+class BillClient(HelperMixIn):
+	"""Bill-related calls """
+	def __init__(self):
+		super()
 		self.congressSession = '115'
 
-	def get_members(memberType):
-		return requests.get('https://api.propublica.org/congress/{}/{}/{}/members.json'
-		.format('v1', '115', memberType), headers={'X-API-Key' : settings.PPC_API_KEY}).json()
+	def get_recent_bills(self, chamber, typeOfBill):
+		path='{}/{}/bills/{}.json'.format(self.congressSession, chamber, typeOfBill)
+		return super().requester(path)
 	
-	
+	def get_upcoming_bills(self, chamber):
+		path='bills/upcoming/{}.json'.format(chamber)
+		return super().requester(path)
+
+	def get_amendments_for_bill(self, billId):
+		path='{}/bills/{}/amendments.json'.format(self.congressSession, billId)
+		super().requester(path)
+
+	def get_subjects_for_bill(self, billId):
+		path='{}/bills/{}/subjects.json'.format(self.congressSession, billId)
+		super().requester(path)
+
+	def get_related_bills(self, billId):
+		path='{}/bills/{}/related.json'.format(self.congressSession, billId)
+		return super().requester(path)
+
+class VoteClient(HelperMixIn):
+	"""Vote Related Calls"""
+
+	def __init__(self):
+		super()
+		self.congressSession = '115'
+
+	def get_recent_votes(self, chamber):
+		path='{}/votes/recent.json'.format(chamber)
+		return super().requester(path)
+
+	def get_party_votes(self, chamber):
+		"""Gets how often someone votes with their party"""
+		path='{}/{}/votes/party.json'.format(self.congressSession, chamber)
+		return super().requester(path)
+

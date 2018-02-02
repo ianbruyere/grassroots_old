@@ -6,7 +6,7 @@ from .serializers import CongressMemberSerializer
 
 
 class CongressMembersViewSet(viewsets.ReadOnlyModelViewSet):
-    """ API endpoint for Individual Senate Members """
+    """ API endpoint for Individual Congress Members """
     queryset = CongressMember.objects.all()
     serializer_class = CongressMemberSerializer
 
