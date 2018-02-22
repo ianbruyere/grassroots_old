@@ -29,8 +29,8 @@ class CongressMembersClient(HelperMixIn):
 		super()
 		self.congressSession = '115'
     
-	def get_members(self, memberType):
-		path='{}/{}/members.json'.format(self.congressSession, memberType)
+	def get_members(self, chamber):
+		path='{}/{}/members.json'.format(self.congressSession, chamber)
 		return super().requester(path)
 	
 	def get_vote_positions(self, memberId):
@@ -47,6 +47,10 @@ class BillClient(HelperMixIn):
 		super()
 		self.congressSession = '115'
 
+	def get_specific_bill(self, billId):
+		path='{}/bills/{}.json'.format(self.congressSession, billId)
+		return super().requester(path)
+
 	def get_recent_bills(self, chamber, typeOfBill):
 		path='{}/{}/bills/{}.json'.format(self.congressSession, chamber, typeOfBill)
 		return super().requester(path)
@@ -57,11 +61,11 @@ class BillClient(HelperMixIn):
 
 	def get_amendments_for_bill(self, billId):
 		path='{}/bills/{}/amendments.json'.format(self.congressSession, billId)
-		super().requester(path)
+		return super().requester(path)
 
 	def get_subjects_for_bill(self, billId):
 		path='{}/bills/{}/subjects.json'.format(self.congressSession, billId)
-		super().requester(path)
+		return super().requester(path)
 
 	def get_related_bills(self, billId):
 		path='{}/bills/{}/related.json'.format(self.congressSession, billId)
@@ -82,4 +86,13 @@ class VoteClient(HelperMixIn):
 		"""Gets how often someone votes with their party"""
 		path='{}/{}/votes/party.json'.format(self.congressSession, chamber)
 		return super().requester(path)
+
+	def get_specific_roll_call(self, chamber, session):
+		"""gets the votes and positions for a specfic roll call"""
+		#TODO some of this is going to be hardcoded until I can figure
+		# out a way to get the proper latest set of roll calls and year for 
+		# now just trying to stub out data format
+		path='{}/{}/sessions/{}/votes/{}.json' \
+		.format(self.congressSession, chamber, session, '17')
+		return super().requester('115/senate/sessions/1/votes/17.json')
 
