@@ -1,4 +1,3 @@
-# from django.contrib.postgres.fields import JSONField
 from django.db import models
 import datetime
 
@@ -6,6 +5,7 @@ import datetime
 class CongressMember(models.Model):
     id = models.CharField(primary_key=True, max_length=300)
     created_at = models.DateTimeField(db_index=True, auto_now_add=True)
+    chamber = models.CharField(max_length=300, null=True)
 
     # Personal Info
     first_name = models.CharField(max_length=300, null=True)
@@ -34,7 +34,8 @@ class CongressMember(models.Model):
     api_uri = models.URLField(null=True, blank=True) #
     url = models.URLField(null=True, blank=True) # personal website
     rss_url = models.URLField(null=True, blank=True)
-    contact_form = models.URLField(null=True, blank=True) 
+    contact_form = models.URLField(null=True, blank=True)
+    #TODO need to hookup members to their vote
 
 class Bill(models.Model):
     bill_id = models.CharField(primary_key=True, max_length=300)

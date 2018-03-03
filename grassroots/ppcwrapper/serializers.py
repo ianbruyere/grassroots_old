@@ -3,6 +3,7 @@ from rest_framework import serializers
 import os
 import requests
 import json
+from rest_framework import serializers
 from datetime import datetime
 import logging
 
@@ -61,4 +62,3 @@ class BillSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return Bill.objects.create(**validated_data)
-

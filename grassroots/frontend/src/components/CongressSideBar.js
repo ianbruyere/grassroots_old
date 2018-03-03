@@ -1,47 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CongressMember from './CongressMember'
-import styles from '../styles/CongressSideBar.css'
+import '../styles/CongressSideBar.css'
 
-const getVisibleCongressMembers = (
-    congressMembers,
-    filter
-) => {
-    return congressMembers.filter(
-        t => t.state == filter
-    )
-}
+const CongressSideBar = ({congressMembers}) => (
 
-class CongressSideBar extends React.Component {
-    constructor() {
-        super();
-
-    }
-    render() {
-        const visibleCongressMembers = getVisibleCongressMembers(
-            this.props.congressMembers,
-            'not'
-        );
-        
-        return (
-              <ul className="listOfMembers">
-                <h3>Senators</h3>
-              {
-                  Object
-                  .keys(visibleCongressMembers)
-                  .map(key => 
-                    <CongressMember 
-                      key={key}
-                      member={visibleCongressMembers[key]}/>
-                  )
-              }
-              </ul>
-        )
-    }
-}
-
-CongressSideBar.propTypes = {
-    
-}
+    <ul className="listOfMembers">
+        <h3>Senators</h3>
+           {
+               Object
+               .keys(congressMembers)
+               .map(key => 
+                <CongressMember 
+                    key={key}
+                    member={congressMembers[key]}/>
+                )
+            }            
+    </ul>
+)
 
 export default CongressSideBar;

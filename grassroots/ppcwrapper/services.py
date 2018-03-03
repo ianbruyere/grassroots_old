@@ -1,12 +1,18 @@
+from django.conf import settings
 import os
 import requests
 import json
 
-#TODO: Need to migrate this 
-PPC_API_KEY = 'xOE6X5gmCOiNu0BH7ksJJHnZVhmnmPQmri9QN2He' #os.environ.get('PPC_API_KEY', None)
+class HelperMixIn(object):
+    """this contains all the stuff universal to the ProPublica Data Store"""
+    def __init__(self):
+	    pass
 	
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> experiment
     # @property
     # def authentication():
     #     return {'X-API-Key' : settings.PPC_API_KEY}
@@ -17,6 +23,7 @@ PPC_API_KEY = 'xOE6X5gmCOiNu0BH7ksJJHnZVhmnmPQmri9QN2He' #os.environ.get('PPC_AP
 
     @staticmethod
     def requester(path):
+<<<<<<< HEAD
 	    return requests.get('https://api.propublica.org/congress/v1/' + path, 
 	                        headers={'X-API-Key' : settings.PPC_API_KEY}).json()
 
@@ -24,6 +31,11 @@ PPC_API_KEY = 'xOE6X5gmCOiNu0BH7ksJJHnZVhmnmPQmri9QN2He' #os.environ.get('PPC_AP
 	# def raw_requester(path):
 	# 	return requests.get(path, headers={'X-API-Key' : settings.PPC_API_KEY}).json())
 
+=======
+	    return requests.get('https://api.propublica.org/congress/v1/ ' + path, 
+	                        headers={'X-API-Key' : settings.PPC_API_KEY}).json()
+
+>>>>>>> experiment
 
 class CongressMembersClient(HelperMixIn):
 	"""This will contain all the possibilties for CongressMembersClient"""
@@ -44,6 +56,7 @@ class CongressMembersClient(HelperMixIn):
 		path='members/{}/bills/{}.json'.format(memberId, cosponoredOrWithdrawn)
 		return super().requester(path)
 	
+<<<<<<< HEAD
 	def get_vote_positions(self, memberId):
 		path= 'members/{}/votes.json'.format(memberId)
 		return super().requester(path)
@@ -51,6 +64,8 @@ class CongressMembersClient(HelperMixIn):
 	def raw_requester(path):
 		return requests.get(path, headers={'X-API-Key' : settings.PPC_API_KEY}).json()
 
+=======
+>>>>>>> experiment
 class BillClient(HelperMixIn):
 	"""Bill-related calls """
 	def __init__(self):
@@ -68,17 +83,20 @@ class BillClient(HelperMixIn):
 	def get_upcoming_bills(self, chamber):
 		path='bills/upcoming/{}.json'.format(chamber)
 		return super().requester(path)
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> experiment
 
-def get_senate_members():
-	return requests.get(_url('{}/{}/{}/members.json'.format(_version(),
-	       '115','senate')), headers=_authentication()).json()
-	pass
+	def get_amendments_for_bill(self, billId):
+		path='{}/bills/{}/amendments.json'.format(self.congressSession, billId)
+		return super().requester(path)
 
-#TODO:Make other functions to other services
-def get_bills():
-	pass
+	def get_subjects_for_bill(self, billId):
+		path='{}/bills/{}/subjects.json'.format(self.congressSession, billId)
+		return super().requester(path)
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 def get_votes():
 	pass	
@@ -90,22 +108,34 @@ def get_votes():
 	def raw_requester(self, path):
 		return requests.get(path, headers={'X-API-Key' : settings.PPC_API_KEY}).json()
 >>>>>>> Stashed changes
+=======
+	def get_related_bills(self, billId):
+		path='{}/bills/{}/related.json'.format(self.congressSession, billId)
+		return super().requester(path)
+>>>>>>> experiment
 
-def get_statements():
-	pass
+class VoteClient(HelperMixIn):
+	"""Vote Related Calls"""
 
-def get_explanations():
-	pass
+	def __init__(self):
+		super()
+		self.congressSession = '115'
 
-def get_committees():
-	pass
+	def get_recent_votes(self, chamber):
+		path='{}/votes/recent.json'.format(chamber)
+		return super().requester(path)
 
-# Helper Functions
-def _authentication():
-	return {'X-API-Key' : PPC_API_KEY}
+	def get_party_votes(self, chamber):
+		"""Gets how often someone votes with their party"""
+		path='{}/{}/votes/party.json'.format(self.congressSession, chamber)
+		return super().requester(path)
 
-def _version():
-	return 'v1'
+	def get_specific_roll_call(self, chamber, session):
+		"""gets the votes and positions for a specfic roll call"""
+		#TODO some of this is going to be hardcoded until I can figure
+		# out a way to get the proper latest set of roll calls and year for 
+		# now just trying to stub out data format
+		path='{}/{}/sessions/{}/votes/{}.json' \
+		.format(self.congressSession, chamber, session, '17')
+		return super().requester('115/senate/sessions/1/votes/17.json')
 
-def _url(path):
-	return 'https://api.propublica.org/congress/' + path

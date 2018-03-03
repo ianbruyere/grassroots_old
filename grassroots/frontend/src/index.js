@@ -1,28 +1,47 @@
+// General Reacty things
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import  congressApp  from './reducers/index'
-import { Provider } from 'react-redux'
-import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import  rootSaga  from './sagas/sagas'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+// Redux stuff
+import { Provider } from 'react-redux'
+import rootReducer from './reducers/index'
+import { createStore, applyMiddleware } from 'redux'
+
+// Saga Middleware
+import createSagaMiddleware from 'redux-saga'
+import mySaga from './sagas/sagas'
+
+
+// Components and whatnot
+import './styles/index.css';
+import App from './components/App';
+import NotFound from './components/NotFound';
+
 
 const sagaMiddleware = createSagaMiddleware()
+
 const store = createStore(
-  congressApp,
+  rootReducer,
   applyMiddleware(sagaMiddleware)
-)
-
-sagaMiddleware.run(rootSaga)
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>, 
-  document.getElementById('root')
 );
 
+sagaMiddleware.run(mySaga)
+
+const Root = () => {
+  return (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="*" component={NotFound} /> 
+      </Switch>
+    </BrowserRouter>
+  </Provider>
+  )
+}
+
+ReactDOM.render(<Root/>, document.getElementById('root'))
 
 registerServiceWorker();

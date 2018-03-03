@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import CongressSideBar from './CongressSideBar';
-import styles from '../styles/App.css';
+import PropTypes from 'prop-types'
+import VisibleCongressMembers from '../containers/VisibleCongressMembers';
+import  '../styles/App.css';
 import USMAP from './USMAP';
 import Header from './Header';
 import Footer from './Footer';
 
 class App extends Component {
+<<<<<<< HEAD
   constructor() {
     super()
     this.state = {
@@ -24,6 +25,8 @@ class App extends Component {
       })
     })
   }
+=======
+>>>>>>> experiment
 
   render() {
     return (
@@ -31,10 +34,17 @@ class App extends Component {
         <Header />
         <div className="wrapper">
           <article className="main">
+<<<<<<< HEAD
             <USMAP congressMembers={this.state.congressMembers}/>
           </article>
           <aside className="aside aside2">   
             <CongressSideBar congressMembers={this.state.congressMembers}/>
+=======
+            <USMAP />
+          </article>
+          <aside className="aside aside2">   
+            <VisibleCongressMembers />
+>>>>>>> experiment
           </aside>  
         </div>
         <Footer />
@@ -47,4 +57,7 @@ App.propTypes = {
   
 }
 
+App.contextTypes = {
+  store: PropTypes.object
+}
 export default App;
