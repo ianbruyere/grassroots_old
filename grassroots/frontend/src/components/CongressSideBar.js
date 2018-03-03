@@ -19,8 +19,8 @@ class CongressSideBar extends React.Component {
     }
     render() {
         const visibleCongressMembers = getVisibleCongressMembers(
-            this.props.senateMembers,
-            "OH"
+            this.props.congressMembers,
+            'not'
         );
         
         return (

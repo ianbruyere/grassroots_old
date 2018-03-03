@@ -17,7 +17,6 @@ const getVisibleCongressMembers = (
 function congressBarFilter(state = initialState, action) {
     switch (action.type) {
         case "FILTER_BY_STATE":
-        console.log(`sex...money...murder...these are our ${action.state}`)
             return action.state
         default:
             return state

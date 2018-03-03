@@ -1,5 +1,6 @@
 /grassrootsproto
 grassroots/db.sqlite3
+/env
 /core
 /.vscode
 *.sqlite
@@ -8,3 +9,6 @@ grassroots/db.sqlite3
 *.pyc
 *.pyo
 *~
+grassroots/fixtures
+celerybeat-schedules
+

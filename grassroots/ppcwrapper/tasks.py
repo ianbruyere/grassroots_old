@@ -1,15 +1,3 @@
-<<<<<<< Updated upstream
-# from celery import task
-# from . import services
-# from models import SenateMember
-# from serializers import SenateMemberSerializer
-
-# @task
-# def get_senate_members():
-#     raw_data = services.get_senate_members()
-#     for i in raw_data['results'][0]['members']:
-        
-=======
 from celery import task
 from celery.schedules import crontab
 from grassroots.celery import app
@@ -26,11 +14,7 @@ app.conf.beat_schedule = {
         'get-recent-senate-bills': {
             'task': 'ppcwrapper.tasks.get_recent_senate_bills',
             'schedule': crontab(minute='*/1')
-        },
-        # 'get-specific-roll-call' : {
-        #     'task' : 'ppcwrapper.tasks.get_specific_roll_call',
-        #     'schedule': crontab(minute='*/1')
-        # }
+        }
 }
 
 @task()
@@ -66,7 +50,6 @@ def get_congress_member_vote_positions(member_id):
                 serializer.save(bill_id=bill)
 
 
-
 # Helper Functions
 def create_or_update(newData, currentData, serializerType, chamber, idName='id'): # TODO:change chamber to be a tuple of arguments
     for i in newData:
@@ -96,4 +79,4 @@ def get_or_create_bill(billData):
 def determine_bill_key(billData):
     key = 'api_uri' if 'api_uri' in billData else 'bill_uri'
     return key
->>>>>>> Stashed changes
+

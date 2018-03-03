@@ -17,10 +17,10 @@ class App extends Component {
   }
   
   componentWillMount() {
-    axios.get("http://127.0.0.1:8000/api/senatemembers/")
+    axios.get("http://127.0.0.1:8000/api/congressmembers/")
     .then(res => {
       this.setState({
-        senateMembers: res.data
+        congressMembers: res.data
       })
     })
   }
@@ -31,10 +31,10 @@ class App extends Component {
         <Header />
         <div className="wrapper">
           <article className="main">
-            <USMAP senateMembers={this.state.senateMembers}/>
+            <USMAP congressMembers={this.state.congressMembers}/>
           </article>
           <aside className="aside aside2">   
-            <CongressSideBar senateMembers={this.state.senateMembers}/>
+            <CongressSideBar congressMembers={this.state.congressMembers}/>
           </aside>  
         </div>
         <Footer />

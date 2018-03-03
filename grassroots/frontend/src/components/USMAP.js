@@ -62,7 +62,7 @@ class USMAP extends React.Component {
         super();
         this.state = { 
             clickedState : '',
-            senateMembers: []
+            congressMembers: []
         }
     }
     onChildChanged(newState) {
@@ -70,7 +70,7 @@ class USMAP extends React.Component {
     }
 
     render() {
-        const { senateMembers } = this.props
+        const { congressMembers } = this.props
         return (
             <div>
               <svg className="usmap" width="959" height="593">
@@ -83,7 +83,7 @@ class USMAP extends React.Component {
                     id={key}
                     stateOutline={usmap[key]}
                     callBackParent={(newState) => this.onChildChanged(newState)}
-                    senateMembers = {senateMembers.filter(obj => {
+                    congressMembers = {congressMembers.filter(obj => {
                         return obj.state === key
                       })}
                     />)

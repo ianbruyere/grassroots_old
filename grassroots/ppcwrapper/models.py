@@ -3,7 +3,7 @@ from django.db import models
 import datetime
 
 # Create your models here.
-class SenateMember(models.Model):
+class CongressMember(models.Model):
     id = models.CharField(primary_key=True, max_length=300)
     created_at = models.DateTimeField(db_index=True, auto_now_add=True)
 
@@ -36,9 +36,6 @@ class SenateMember(models.Model):
     rss_url = models.URLField(null=True, blank=True)
     contact_form = models.URLField(null=True, blank=True) 
 
-<<<<<<< Updated upstream
-#TODO: Need to make other models for endpoints
-=======
 class Bill(models.Model):
     bill_id = models.CharField(primary_key=True, max_length=300)
     congress = models.CharField(max_length=300, null=True)
@@ -50,7 +47,7 @@ class Bill(models.Model):
     cosponsored_date = models.CharField(max_length=300, null=True)
     introduced_date= models.CharField(max_length=300, null=True)
     sponsor_title = models.CharField(max_length=300, null=True)
-    sponsor_id = models.ForeignKey(CongressMember, related_name='bills', on_delete=models.CASCADE)
+    sponsor_id = models.ForeignKey(CongressMember, related_name='sponsoredbills', on_delete=models.CASCADE)
     sponsor_name = models.CharField(max_length=300, null=True)
     sponsor_state = models.CharField(max_length=300, null=True)
     sponsor_party = models.CharField(max_length=300, null=True)
@@ -75,59 +72,27 @@ class Bill(models.Model):
     def get_primary_subjects():
         Bill.objects.all().values_list('primary_subject', flat=True)
 
-# class Session(models.Model):
-#     congress = models.IntegerField(blank=True, null=True)
-#     chamber = models.CharField(max_length=300, null=True)
-#     session = models.IntegerField(blank=True, null=True)
-#     roll_call = models.IntegerField(blank=True, null=True)
-#     source = models.URLField(blank=True, null=True)
-#     url = models.URLField(blank=True, null=True)
-#     vote_uri = models.URLField(blank=True, null=True)
-#     question = models.CharField(max_length=300, blank=True)
-#     description = models.TextField(blank=True)
-#     vote_type = models.CharField(max_length=300, blank=True)
-#     date = models.CharField(max_length=300, blank=True)
-#     time = models.CharField(max_length=300, blank=True)
-#     result = models.CharField(max_length=300, blank=True)
 
 class Votes(models.Model):
-    # session = models.OneToOneField(Session, on_delete=models.CASCADE, related_name='bill')
     number = models.CharField(max_length=300)
     bill_id = models.ForeignKey(Bill, on_delete=models.CASCADE)
     bill_uri = models.CharField(max_length=300, blank=True)
     title = models.TextField()
     latest_action = models.TextField()
     
-# class CongressMemberVotePositions(models.Model):
-#     class Meta:
-#         unique_together = ('session', 'member_id')
-
-#     session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='positions')
-#     member_id = models.ForeignKey(CongressMember, on_delete=models.CASCADE)
-#     vote_position = models.CharField(max_length=300, blank=True)
-
 class CongressMemberVotePosition(models.Model):
     class Meta:
         unique_together = ('member_id', 'bill_id')
 
-    member_id = models.ForeignKey(CongressMember, related_name='member', on_delete=models.CASCADE)
+    member_id = models.ForeignKey(CongressMember, related_name='votes', on_delete=models.CASCADE)
     chamber = models.CharField(max_length=300)
     session = models.CharField(max_length=300)
     roll_call = models.CharField(max_length=300)
     vote_uri = models.CharField(max_length=300)
-    bill_id = models.ForeignKey(Bill, on_delete=models.CASCADE)
+    bill_id = models.ForeignKey(Bill, related_name='votepositions', on_delete=models.CASCADE)
     description = models.TextField()
     question = models.CharField(max_length=300)
     result = models.CharField(max_length=300)
     date = models.CharField(max_length=300)
     time = models.CharField(max_length=300)
     position = models.CharField(max_length=300)
-
-    
-
-
-    
-
-
-    
->>>>>>> Stashed changes
