@@ -8,6 +8,7 @@ class CongressMembersViewSet(viewsets.ReadOnlyModelViewSet):
     """ API endpoint for Individual Congress Members """
     queryset = CongressMember.objects.all()
     serializer_class = serializers.CongressMemberSerializer
+    search_fields = ('member_id', )
 
 class BillsViewSet(viewsets.ReadOnlyModelViewSet):
      queryset = Bill.objects.all()

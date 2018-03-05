@@ -1,5 +1,6 @@
 export const REQUEST_CONGRESS_MEMBERS = 'REQUEST_CONGRESS_MEMBERS'
 export const RECIEVE_CONGRESS_MEMBERS = 'RECIEVE_CONGRESS_MEMBERS'
+export const SELECT_CONGRESS_MEMBER = 'SELECT_CONGRESS_MEMBER'
 export const SELECT_STATE = 'SELECT_STATE'
 
 export function selectState(state) {
@@ -24,3 +25,9 @@ export function recieveCongressMembers(state, json) {
     }
 }
 
+export function selectCongressMember(memberId) {
+    return {
+        type: SELECT_CONGRESS_MEMBER,
+        memberId
+    }
+}

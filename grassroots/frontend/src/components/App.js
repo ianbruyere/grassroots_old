@@ -7,26 +7,6 @@ import Header from './Header';
 import Footer from './Footer';
 
 class App extends Component {
-<<<<<<< HEAD
-  constructor() {
-    super()
-    this.state = {
-      senateMembers: [],
-      houseMembers:[],
-      currentState: []
-    }
-  }
-  
-  componentWillMount() {
-    axios.get("http://127.0.0.1:8000/api/congressmembers/")
-    .then(res => {
-      this.setState({
-        congressMembers: res.data
-      })
-    })
-  }
-=======
->>>>>>> experiment
 
   render() {
     return (
@@ -34,17 +14,10 @@ class App extends Component {
         <Header />
         <div className="wrapper">
           <article className="main">
-<<<<<<< HEAD
-            <USMAP congressMembers={this.state.congressMembers}/>
-          </article>
-          <aside className="aside aside2">   
-            <CongressSideBar congressMembers={this.state.congressMembers}/>
-=======
             <USMAP />
           </article>
           <aside className="aside aside2">   
             <VisibleCongressMembers />
->>>>>>> experiment
           </aside>  
         </div>
         <Footer />

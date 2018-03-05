@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import {
     REQUEST_CONGRESS_MEMBERS,
     RECIEVE_CONGRESS_MEMBERS,
-    SELECT_STATE
+    SELECT_STATE,
+    SELECT_CONGRESS_MEMBER
 } from '../actions/index'
 
 function selectedState(state = '', action) {
@@ -34,6 +35,7 @@ function congressMembers(
               didInvalidate: false,
               items: action.congressMembers
           })
+        case SELECT_CONGRESS_MEMBER:
         default:
             return state
     }
@@ -41,20 +43,16 @@ function congressMembers(
 
 function postsBySenateMembers(state = {}, action) {
     switch (action.type) {
-<<<<<<< HEAD
-        case "FILTER_BY_STATE":
-            return action.state
-=======
         case REQUEST_CONGRESS_MEMBERS:
         case RECIEVE_CONGRESS_MEMBERS:
           return Object.assign({}, state, {
               congressMembers: action.congressMembers//.filter(t => t.state===action.state)
           })
->>>>>>> experiment
         default:
           return state
     }
 }
+
 
 const rootReducer = combineReducers({
     postsBySenateMembers,

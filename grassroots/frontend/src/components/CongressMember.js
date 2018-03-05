@@ -8,11 +8,19 @@ import Profile from './Profile'
 
 
 class CongressMember extends React.Component {
+    constructor() {
+      super()
+      this.handleClick = this.handleClick.bind(this)
+    }
 
+    handleClick(e) {
+      const {store} = this.context;
+      store.dispatch(selectCongressMember(e.target.id))
+    }
     render() {
         const {member} = this.props;
         return (
-                <li id={`${member.member_id}`}>
+                <li id={`${member.member_id}`} onClick={ e => this.handleClick(e)}>
                   <div className="totalListItemWrapper">
                     <div className="profileImageWrapper"><Profile /></div>
                     <div className="profileInfoWrapper">
