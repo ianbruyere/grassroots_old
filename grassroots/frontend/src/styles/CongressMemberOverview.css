@@ -1,0 +1,20 @@
+#OverviewWrapper {
+    display: flex;
+    flex: 1 auto;
+}
+
+.infoBlock {
+    display: flex;
+    flex: 1 auto;
+}
+#CongressMemberProfile {
+    background-color: deepskyblue;
+}
+
+#CongressMemberVotePositions {
+    background-color: hotpink;
+}
+
+#CongressMemberBills {
+    background-color: goldenrod;
+}

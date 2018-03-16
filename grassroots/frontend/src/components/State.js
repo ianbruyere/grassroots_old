@@ -27,10 +27,6 @@ class State extends React.Component {
     }
 }
 
-State.propTypes = {
-
-}
-
 State.contextTypes = {
     store: PropTypes.object
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Match } from 'react-router-dom'
 
 // Redux stuff
 import { Provider } from 'react-redux'
@@ -17,6 +17,7 @@ import mySaga from './sagas/sagas'
 // Components and whatnot
 import './styles/index.css';
 import App from './components/App';
+import CongressMemberContainer from './components/CongressMemberContainer';
 import NotFound from './components/NotFound';
 
 
@@ -34,6 +35,7 @@ const Root = () => {
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
+        <Route path="/congressmember/:congressMemberId" component={CongressMemberContainer} />
         <Route exact path="/" component={App} />
         <Route path="*" component={NotFound} /> 
       </Switch>

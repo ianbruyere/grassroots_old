@@ -4,16 +4,15 @@ import CongressMember from './CongressMember'
 import '../styles/CongressSideBar.css'
 
 const CongressSideBar = ({congressMembers}) => (
-
     <ul className="listOfMembers">
         <h3>Senators</h3>
            {
                Object
-               .keys(congressMembers)
+               .keys(congressMembers.items)
                .map(key => 
                 <CongressMember 
                     key={key}
-                    member={congressMembers[key]}/>
+                    member={congressMembers.items[key]}/>
                 )
             }            
     </ul>
