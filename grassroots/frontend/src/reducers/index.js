@@ -48,8 +48,9 @@ function bills(
         isFetching: false,
         didInvalidate: false,
         items: []        
-    },
-    action) {
+        },
+        action) 
+    {
         switch(action.type){
             case REQUEST_BILL:
             return Object.assign({}, state, {
@@ -60,8 +61,16 @@ function bills(
             return Object.assign({}, state, {
                 isFetching: false,
                 didInvalidate: false,
-                items: action.bill
+                items: [
+                    ...state.items,
+                    {   
+                        id: action.bill.bill_id,
+                        bill: action.bill
+                    }
+                ]
             })
+            default:
+                return state;
         }
     }
 
@@ -93,7 +102,8 @@ function selectedCongressMember(
 const rootReducer = combineReducers({
     selectedCongressMember,
     congressMembers,
-    selectedState
+    selectedState,
+    bills
 })
 
 export default rootReducer;

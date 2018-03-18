@@ -10,10 +10,6 @@ import Youtube from '../icons/Youtube'
 import Profile from './Profile'
 import '../styles/CongressMembers.css'
 
-// Redux stuff
-import { selectCongressMember } from '../actions/index'
-
-
 class CongressMember extends React.Component {
     constructor(props) {
       super(props)

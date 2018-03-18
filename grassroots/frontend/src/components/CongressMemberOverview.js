@@ -4,14 +4,13 @@ import PropTypes from 'prop-types'
 
 // Components
 import CongressMemberVotePositions from './CongressMemberVotePositions'
-import CongressMemberBills from './CongressMemberBills'
+import VisibleBills from '../containers/VisibleBills'
 import CongressMemberProfile from './CongressMemberProfile'
 
 import '../styles/CongressMemberOverview.css'
 
 class CongressMemberOverview extends React.Component {
     render() {
-        console.log(this.props);
         const {selectedCongressMember} = this.props;
         // need to add some error handling
         if(selectedCongressMember.isFetching) {
@@ -20,12 +19,13 @@ class CongressMemberOverview extends React.Component {
         return (
             <div id='OverviewWrapper'>
                 <div id="CongressMemberProfile" className="infoBlock">
+                  <CongressMemberProfile />
                 </div>
                 <div id="CongressMemberVotePositions" className="infoBlock">
                   <CongressMemberVotePositions member={selectedCongressMember.items[0]}/>
                 </div>
                 <div id="CongressMemberBills" className="infoBlock">
-                  <CongressMemberBills member={selectedCongressMember.items[0]}/>
+                  <VisibleBills listOfBills={selectedCongressMember.items[0].sponsoredbills}/>
                 </div> 
             </div>
           )
