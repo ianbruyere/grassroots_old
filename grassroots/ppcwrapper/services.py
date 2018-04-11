@@ -8,34 +8,14 @@ class HelperMixIn(object):
     def __init__(self):
 	    pass
 	
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> experiment
-    # @property
-    # def authentication():
-    #     return {'X-API-Key' : settings.PPC_API_KEY}
-	
     @staticmethod
     def version():
 	    return 'v1'
 
     @staticmethod
     def requester(path):
-<<<<<<< HEAD
-	    return requests.get('https://api.propublica.org/congress/v1/' + path, 
-	                        headers={'X-API-Key' : settings.PPC_API_KEY}).json()
-
-	# @staticmethod
-	# def raw_requester(path):
-	# 	return requests.get(path, headers={'X-API-Key' : settings.PPC_API_KEY}).json())
-
-=======
 	    return requests.get('https://api.propublica.org/congress/v1/ ' + path, 
 	                        headers={'X-API-Key' : settings.PPC_API_KEY}).json()
-
->>>>>>> experiment
 
 class CongressMembersClient(HelperMixIn):
 	"""This will contain all the possibilties for CongressMembersClient"""
@@ -56,16 +36,10 @@ class CongressMembersClient(HelperMixIn):
 		path='members/{}/bills/{}.json'.format(memberId, cosponoredOrWithdrawn)
 		return super().requester(path)
 	
-<<<<<<< HEAD
-	def get_vote_positions(self, memberId):
-		path= 'members/{}/votes.json'.format(memberId)
-		return super().requester(path)
-	
 	def raw_requester(path):
 		return requests.get(path, headers={'X-API-Key' : settings.PPC_API_KEY}).json()
 
-=======
->>>>>>> experiment
+
 class BillClient(HelperMixIn):
 	"""Bill-related calls """
 	def __init__(self):
@@ -83,10 +57,6 @@ class BillClient(HelperMixIn):
 	def get_upcoming_bills(self, chamber):
 		path='bills/upcoming/{}.json'.format(chamber)
 		return super().requester(path)
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> experiment
 
 	def get_amendments_for_bill(self, billId):
 		path='{}/bills/{}/amendments.json'.format(self.congressSession, billId)
@@ -96,23 +66,21 @@ class BillClient(HelperMixIn):
 		path='{}/bills/{}/subjects.json'.format(self.congressSession, billId)
 		return super().requester(path)
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-def get_votes():
-	pass	
-=======
+
+    def get_votes():
+	    pass	
+
 	def get_related_bills(self, billId):
 		path='{}/bills/{}/related.json'.format(self.congressSession, billId)
 		return super().requester(path)
 	
 	def raw_requester(self, path):
 		return requests.get(path, headers={'X-API-Key' : settings.PPC_API_KEY}).json()
->>>>>>> Stashed changes
-=======
+
 	def get_related_bills(self, billId):
 		path='{}/bills/{}/related.json'.format(self.congressSession, billId)
 		return super().requester(path)
->>>>>>> experiment
+
 
 class VoteClient(HelperMixIn):
 	"""Vote Related Calls"""

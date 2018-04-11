@@ -25,6 +25,7 @@ class CongressMemberOverview extends React.Component {
                   <CongressMemberVotePositions member={selectedCongressMember.items[0]}/>
                 </div>
                 <div id="CongressMemberBills" className="infoBlock">
+                  <h3>Sponsoored Bills </h3>
                   <VisibleBills listOfBills={selectedCongressMember.items[0].sponsoredbills}/>
                 </div> 
             </div>

@@ -1,34 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { selectState, requestCongressMembers } from '../actions/index'
+import '../styles/USState.css'
 
-class State extends React.Component {
-    constructor() {
-        super()
-        this.handleClick = this.handleClick.bind(this)
-    }
-
-    handleClick(e) {
-      const {store} = this.context;
-      store.dispatch(requestCongressMembers(e.target.id))
-    }
-    render() {
-        const { stateOutline, id } = this.props
+const State = ({onStateClick, id, stateOutline, active}) => {
+    if (active) {
+        console.log('getting in the active state')
         return (
-            <g>
+            <g transform="scale(2.0)">
               <path 
-              onClick={e => this.handleClick(e)}
+              onClick={e => onStateClick(e.target.id)}
               d={stateOutline} 
               id={id}
-              fill="#ffffff"/>
+              fill="#ffffff"
+              className="active"
+              />
             </g>
             
-        )
-    }
+)} else {
+    return (
+        <g>
+        <path 
+        onClick={e => onStateClick(e.target.id)}
+        d={stateOutline} 
+        id={id}
+        fill="#ffffff"
+        />
+      </g>
+    )
+ }
 }
 
-State.contextTypes = {
-    store: PropTypes.object
-}
 
 export default State;

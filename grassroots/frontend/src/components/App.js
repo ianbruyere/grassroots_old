@@ -1,36 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
-import VisibleCongressMembers from '../containers/VisibleCongressMembers';
+import VisibleCongressMembersList from '../containers/VisibleCongressMembersList';
 import  '../styles/App.css';
-import USMAP from './USMAP';
+import VisibleUSMap from '../containers/VisibleUSMap';
 import Header from './Header';
 import Footer from './Footer';
 
-class App extends Component {
-
-  render() {
-    return (
+const App = () => 
+ (
       <div>
         <Header />
         <div className="wrapper">
           <article className="main">
-            <USMAP />
+            <VisibleUSMap />
           </article>
-          <aside className="aside aside2">   
-            <VisibleCongressMembers />
-          </aside>  
+            
+            <VisibleCongressMembersList  />
+ 
         </div>
         <Footer />
       </div>
-    );
-  }
-}
+)
 
-App.propTypes = {
-  
-}
-
-App.contextTypes = {
-  store: PropTypes.object
-}
 export default App;

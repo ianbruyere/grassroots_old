@@ -9,7 +9,12 @@ class BillItem extends React.Component {
         } else {
         return(
             <li>
-              <b>{bill.bill.short_title}</b>
+                <div className="totalLisItemWrapper">
+                  <div className="billInfoWrapper" >
+                    <b>{bill.bill.short_title}</b>
+                  </div>
+                </div>
+              
             </li>
         )
       }

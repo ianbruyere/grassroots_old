@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
+import { requestBill } from '../actions/index'
 import CongressMemberBills from '../components/CongressMemberBills'
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,8 +10,12 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = () => {
-
+const mapDispatchToProps = (dispatch) => {
+   return {
+       requestBill: billURL => {
+           dispatch(requestBill(billURL))
+       }
+   }
 }
 
 const VisibleBills = connect(

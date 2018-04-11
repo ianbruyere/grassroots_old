@@ -13,12 +13,24 @@
     text-align: left;
     display: flex;
     justify-content: center;
-    background: #404040;
+    background: #111;
   }
 
 .aside2 {
     overflow: auto;
   }
+
+.container {
+    width: 60px;
+}
+
+.container.active {
+   width: 15vh;
+}
+.inactive {
+    visibility: hidden;
+    transform: translateX(1000px)
+}
 
   @media all and (min-width: 600px) {
     .aside { flex: 1 auto; }

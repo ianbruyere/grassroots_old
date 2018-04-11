@@ -23,7 +23,7 @@ class CongressMember extends React.Component {
     render() {
         const {member} = this.props;
         return (
-                <li >
+                <li>
                   <div className="totalListItemWrapper">
                     <div className="profileImageWrapper"><Profile /></div>
                     <div className="profileInfoWrapper">
