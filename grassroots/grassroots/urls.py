@@ -16,13 +16,15 @@ Including another URLconf
 # from django.contrib import admin
 from django.conf.urls import include, url
 
-from ppcwrapper.urls import router
-
+from ppcwrapper.urls import router as ppcwrapperrouter
+from twitterapi.urls import router as twitterapirouter
 from rest_framework.authtoken.views import obtain_auth_token
 
 
 urlpatterns = [
     url(r'^api/token/', obtain_auth_token, name='api-token'),
-   url(r'^api/', include(router.urls)),
+    url(r'^api/ppcwrapper/', include(ppcwrapperrouter.urls)),
+    url(r'^api/twitterapi/', include(twitterapirouter.urls)),
+
     #path('admin/', admin.site.urls),
 ]

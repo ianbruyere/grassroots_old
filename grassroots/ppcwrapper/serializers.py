@@ -1,12 +1,5 @@
 from .models import CongressMember, Bill, CongressMemberVotePosition
 from rest_framework import serializers
-import os
-import requests
-import json
-from rest_framework import serializers
-from datetime import datetime
-import logging
-
 
 class CongressMemberSerializer(serializers.ModelSerializer):
     sponsoredbills = serializers.HyperlinkedRelatedField(

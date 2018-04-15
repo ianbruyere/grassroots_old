@@ -37,6 +37,12 @@ class CongressMember(models.Model):
     contact_form = models.URLField(null=True, blank=True)
     #TODO need to hookup members to their vote
 
+    def get_member_ids():
+        return CongressMember.objects.all().values_list('id', flat=True)
+    
+    def get_twitter_data():
+        return CongressMember.objects.all().values_list('id', 'twitter_account')
+
 class Bill(models.Model):
     bill_id = models.CharField(primary_key=True, max_length=300)
     congress = models.CharField(max_length=300, null=True)
@@ -71,7 +77,7 @@ class Bill(models.Model):
     chamber = models.CharField(max_length=300, null=True)
 
     def get_primary_subjects():
-        Bill.objects.all().values_list('primary_subject', flat=True)
+        return Bill.objects.all().values_list('primary_subject', flat=True)
 
 
 class Votes(models.Model):

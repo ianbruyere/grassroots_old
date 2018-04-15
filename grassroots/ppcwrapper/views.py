@@ -4,6 +4,8 @@ from rest_framework import viewsets, generics
 from .models import CongressMember, Bill, CongressMemberVotePosition
 from . import serializers
 
+#TODO Need to pickle this so that I can cache the responses. 
+# Note: need to actualy look into pickling and cacheing
 class CongressMembersViewSet(viewsets.ReadOnlyModelViewSet):
     """ API endpoint for Individual Congress Members """
     serializer_class = serializers.CongressMemberSerializer
